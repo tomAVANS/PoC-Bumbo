@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BumboPoC.Web", "BumboPoC.Web\BumboPoC.Web.csproj", "{5DA52A5D-477D-4303-A14C-D0D75B34C6D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BumboPoC.Domain", "BumboPoC.Domain\BumboPoC.Domain.csproj", "{CA4ED528-7C18-4DCA-9853-5A9FBC637D4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DA52A5D-477D-4303-A14C-D0D75B34C6D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA52A5D-477D-4303-A14C-D0D75B34C6D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA52A5D-477D-4303-A14C-D0D75B34C6D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA52A5D-477D-4303-A14C-D0D75B34C6D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA4ED528-7C18-4DCA-9853-5A9FBC637D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4ED528-7C18-4DCA-9853-5A9FBC637D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4ED528-7C18-4DCA-9853-5A9FBC637D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4ED528-7C18-4DCA-9853-5A9FBC637D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
