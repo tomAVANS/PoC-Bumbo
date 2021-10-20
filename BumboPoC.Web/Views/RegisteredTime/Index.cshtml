@@ -1,0 +1,57 @@
+@model List<RegisteredTimeViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Voornaam
+            </th>
+            <th>
+                Tussenvoegsel
+            </th>
+            <th>
+                Achternaam
+            </th>
+            <th>
+                Starttijd
+            </th>
+            <th>
+                Eindtijd
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeEntry.StartDateTime.LocalDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeEntry.EndDateTime.LocalDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeEntry.ApproveStatus)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
