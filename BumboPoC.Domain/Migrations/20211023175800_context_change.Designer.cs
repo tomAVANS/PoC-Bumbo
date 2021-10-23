@@ -4,14 +4,16 @@ using BumboPoC.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BumboPoC.Domain.Migrations
 {
     [DbContext(typeof(BumboContext))]
-    partial class BumboContextModelSnapshot : ModelSnapshot
+    [Migration("20211023175800_context_change")]
+    partial class context_change
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

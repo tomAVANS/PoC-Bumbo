@@ -19,6 +19,12 @@
                 Achternaam
             </th>
             <th>
+                Geplande_Starttijd
+            </th>
+            <th>
+                Geplande_Eindtijd
+            </th>
+            <th>
                 Starttijd
             </th>
             <th>
@@ -41,6 +47,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Employee.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeBlock.StartTime.LocalDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeBlock.EndTime.LocalDateTime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TimeEntry.StartDateTime.LocalDateTime)

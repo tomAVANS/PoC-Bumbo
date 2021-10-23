@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BumboPoC.Domain;
 using BumboPoC.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BumboPoC.Web.Controllers
 {
@@ -18,18 +19,67 @@ namespace BumboPoC.Web.Controllers
         }
         
         public IActionResult Index()
+
         {
-            var registeredTimeViewModel = _bumboContext.Employees
-                .Join(
-                        _bumboContext.TimeEntries,
-                        employee => employee.Id,
-                        timeEntry => timeEntry.EmployeeId,
-                        (employee, timeEntry) => new RegisteredTimeViewModel()
+            
+            var employees = _bumboContext.Employees.Include(e => e.TimeBlocks).Include(e => e.TimeEntries).ToList();
+            var registeredTimeViewModels = new List<RegisteredTimeViewModel>();
+            foreach(var employee in employees)
+            {
+                foreach(var timeBlock in employee.TimeBlocks)
+                {
+                    var startTime = timeBlock.StartTime;
+                    TimeEntry nearestTimeEntry = null;
+                    foreach(var timeEntry in employee.TimeEntries.Where(t => t.StartDateTime.Date == startTime.Date))
+                    {
+                        if(nearestTimeEntry == null || timeBlock.StartTime-timeEntry.StartDateTime<timeBlock.StartTime- nearestTimeEntry.StartDateTime)
                         {
-                            Employee = employee,
-                            TimeEntry = timeEntry
-                        }).ToList();
-                return View(registeredTimeViewModel);
+                            nearestTimeEntry = timeEntry;
+                        }
+                    }
+                    registeredTimeViewModels.Add(new RegisteredTimeViewModel()
+                    {
+                        Employee = employee,
+                        TimeBlock = timeBlock,
+                        TimeEntry = nearestTimeEntry
+                    });
+                }
+            }
+            //var registeredTimeViewModel = _bumboContext.Employees
+            //    .Join(
+            //    _bumboContext.TimeEntries,
+            //    employee => employee.Id,
+            //    timeEntry => timeEntry.EmployeeId,
+            //    (employee, timeEntry) => new
+            //    {
+            //        Employee = employee,
+            //(        TimeEntry = timeEntry
+
+            //    }
+            //    ).Join(
+            //    _bumboContext.TimeBlocks,
+            //    employee => employee.Employee.Id,
+            //    timeBlock => timeBlock.EmployeeId,
+            //    (left, timeBlock) => new RegisteredTimeViewModel()
+            //    {
+            //        Employee = left.Employee,
+            //        TimeBlock = timeBlock,
+            //        TimeEntry = left.TimeEntry
+
+            //    }
+            //    ).Where(m => m.TimeEntry.StartDateTime.Day == m.TimeBlock.StartTime.Day).ToList();
+            //    /*.Join
+                //_bumboContext.TimeBlocks,
+                //employee => employee.Id,
+                //timeBlock => timeBlock.EmployeeId,
+                //(employee, timeEntry,timeBlock) => new RegisteredTimeViewModel()
+                //{
+                //    Employee = employee,
+                //    TimeEntry = timeEntry,
+                //    TimeBlock = timeBlock
+                //}
+                //).ToList();*/
+                return View(registeredTimeViewModels);
         }
     }
 }
