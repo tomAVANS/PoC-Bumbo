@@ -31,7 +31,11 @@ namespace BumboPoC.Web
 
 			// https://neelbhatt.com/2018/02/27/use-dbcontextpooling-to-improve-the-performance-net-core-2-1-feature/
 			services.AddDbContextPool<BumboContext>(builder =>
-				builder.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
+				builder.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString"),
+				sqlServerOptionsAction: sqlOptions =>
+				{
+					sqlOptions.EnableRetryOnFailure();
+				}));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
