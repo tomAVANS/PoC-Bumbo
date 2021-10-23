@@ -37,5 +37,7 @@ namespace BumboPoC.Domain
 		public NfcCard NfcCard { get; set; }
 		
 		public ICollection<TimeEntry> TimeEntries { get; set; }
+		
+		public ICollection<TimeBlock> TimeBlocks { get; set; }
 	}
 }
