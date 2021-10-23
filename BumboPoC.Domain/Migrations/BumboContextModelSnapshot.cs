@@ -103,6 +103,84 @@ namespace BumboPoC.Domain.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BumboPoC.Domain.TimeBlock", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("EndTime")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset>("StartTime")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("TimeScheduleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("TimeScheduleId");
+
+                    b.ToTable("TimeBlock");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EmployeeId = 1,
+                            EndTime = new DateTimeOffset(new DateTime(2021, 10, 18, 21, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            StartTime = new DateTimeOffset(new DateTime(2021, 10, 18, 16, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            TimeScheduleId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EmployeeId = 1,
+                            EndTime = new DateTimeOffset(new DateTime(2021, 10, 19, 12, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            StartTime = new DateTimeOffset(new DateTime(2021, 10, 19, 7, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            TimeScheduleId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EmployeeId = 1,
+                            EndTime = new DateTimeOffset(new DateTime(2021, 10, 21, 21, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            StartTime = new DateTimeOffset(new DateTime(2021, 10, 21, 18, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            TimeScheduleId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            EmployeeId = 2,
+                            EndTime = new DateTimeOffset(new DateTime(2021, 10, 18, 17, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            StartTime = new DateTimeOffset(new DateTime(2021, 10, 18, 7, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            TimeScheduleId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            EmployeeId = 2,
+                            EndTime = new DateTimeOffset(new DateTime(2021, 10, 19, 21, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            StartTime = new DateTimeOffset(new DateTime(2021, 10, 19, 12, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            TimeScheduleId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            EmployeeId = 2,
+                            EndTime = new DateTimeOffset(new DateTime(2021, 10, 19, 21, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            StartTime = new DateTimeOffset(new DateTime(2021, 10, 19, 14, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            TimeScheduleId = 1
+                        });
+                });
+
             modelBuilder.Entity("BumboPoC.Domain.TimeEntry", b =>
                 {
                     b.Property<int>("Id")
@@ -134,16 +212,74 @@ namespace BumboPoC.Domain.Migrations
                             Id = 1,
                             ApproveStatus = 0,
                             EmployeeId = 1,
-                            EndDateTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            EndDateTime = new DateTimeOffset(new DateTime(2021, 10, 18, 21, 30, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             StartDateTime = new DateTimeOffset(new DateTime(2021, 10, 18, 16, 30, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0))
                         },
                         new
                         {
                             Id = 2,
                             ApproveStatus = 0,
+                            EmployeeId = 1,
+                            EndDateTime = new DateTimeOffset(new DateTime(2021, 10, 19, 12, 2, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            StartDateTime = new DateTimeOffset(new DateTime(2021, 10, 19, 6, 56, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ApproveStatus = 0,
                             EmployeeId = 2,
-                            EndDateTime = new DateTimeOffset(new DateTime(2021, 10, 18, 18, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
-                            StartDateTime = new DateTimeOffset(new DateTime(2021, 10, 18, 12, 30, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0))
+                            EndDateTime = new DateTimeOffset(new DateTime(2021, 10, 21, 21, 15, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            StartDateTime = new DateTimeOffset(new DateTime(2021, 10, 21, 18, 1, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ApproveStatus = 0,
+                            EmployeeId = 2,
+                            EndDateTime = new DateTimeOffset(new DateTime(2021, 10, 18, 17, 45, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            StartDateTime = new DateTimeOffset(new DateTime(2021, 10, 18, 7, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ApproveStatus = 0,
+                            EmployeeId = 2,
+                            EndDateTime = new DateTimeOffset(new DateTime(2021, 10, 19, 21, 8, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            StartDateTime = new DateTimeOffset(new DateTime(2021, 10, 19, 11, 45, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0))
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ApproveStatus = 0,
+                            EmployeeId = 2,
+                            EndDateTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            StartDateTime = new DateTimeOffset(new DateTime(2021, 10, 20, 14, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0))
+                        });
+                });
+
+            modelBuilder.Entity("BumboPoC.Domain.TimeSchedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("WeekNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TimeSchedule");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            WeekNumber = 42,
+                            Year = 2021
                         });
                 });
 
@@ -154,6 +290,25 @@ namespace BumboPoC.Domain.Migrations
                         .HasForeignKey("NfcCardId");
 
                     b.Navigation("NfcCard");
+                });
+
+            modelBuilder.Entity("BumboPoC.Domain.TimeBlock", b =>
+                {
+                    b.HasOne("BumboPoC.Domain.Employee", "Employee")
+                        .WithMany("TimeBlocks")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BumboPoC.Domain.TimeSchedule", "TimeSchedule")
+                        .WithMany("TimeBlocks")
+                        .HasForeignKey("TimeScheduleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("TimeSchedule");
                 });
 
             modelBuilder.Entity("BumboPoC.Domain.TimeEntry", b =>
@@ -169,7 +324,14 @@ namespace BumboPoC.Domain.Migrations
 
             modelBuilder.Entity("BumboPoC.Domain.Employee", b =>
                 {
+                    b.Navigation("TimeBlocks");
+
                     b.Navigation("TimeEntries");
+                });
+
+            modelBuilder.Entity("BumboPoC.Domain.TimeSchedule", b =>
+                {
+                    b.Navigation("TimeBlocks");
                 });
 #pragma warning restore 612, 618
         }
