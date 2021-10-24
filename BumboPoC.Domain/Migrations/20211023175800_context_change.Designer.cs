@@ -4,14 +4,16 @@ using BumboPoC.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BumboPoC.Domain.Migrations
 {
     [DbContext(typeof(BumboContext))]
-    partial class BumboContextModelSnapshot : ModelSnapshot
+    [Migration("20211023175800_context_change")]
+    partial class context_change
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,8 +177,8 @@ namespace BumboPoC.Domain.Migrations
                         {
                             Id = 6,
                             EmployeeId = 2,
-                            EndTime = new DateTimeOffset(new DateTime(2021, 10, 20, 21, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
-                            StartTime = new DateTimeOffset(new DateTime(2021, 10, 20, 14, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            EndTime = new DateTimeOffset(new DateTime(2021, 10, 19, 21, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            StartTime = new DateTimeOffset(new DateTime(2021, 10, 19, 14, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
                             TimeScheduleId = 1
                         });
                 });
@@ -281,65 +283,6 @@ namespace BumboPoC.Domain.Migrations
                             WeekNumber = 42,
                             Year = 2021
                         });
-                });
-
-            modelBuilder.Entity("BumboPoC.Domain.WorkedShiftRaw", b =>
-                {
-                    b.Property<DateTimeOffset>("EmployeeDateOfBirth")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("EmployeeEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeFirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeIban")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EmployeeLastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeMiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmployeeNfcCardId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TimeApproveStatus")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TimeBlockEmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTimeOffset>("TimeBlockEndTime")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<int>("TimeBlockId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTimeOffset>("TimeBlockStartTime")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<int>("TimeBlockTimeScheduleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TimeEntryEmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTimeOffset>("TimeEntryEndDateTime")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<int>("TimeEntryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTimeOffset>("TimeEntryStartDateTime")
-                        .HasColumnType("datetimeoffset");
-
-                    b.ToTable("WorkedShifts");
                 });
 
             modelBuilder.Entity("BumboPoC.Domain.Employee", b =>

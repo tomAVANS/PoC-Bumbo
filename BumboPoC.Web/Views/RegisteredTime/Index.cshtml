@@ -1,4 +1,4 @@
-@model List<RegisteredTimeViewModel>
+@model IEnumerable<BumboPoC.Domain.WorkedShift>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,30 +8,40 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                Voornaam
-            </th>
-            <th>
-                Tussenvoegsel
-            </th>
-            <th>
-                Achternaam
-            </th>
-            <th>
-                Starttijd
-            </th>
-            <th>
-                Eindtijd
-            </th>
-            <th>
-                Status
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            Voornaam
+        </th>
+        <th>
+            Tussenvoegsel
+        </th>
+        <th>
+            Achternaam
+        </th>
+        <th>
+            Geplande_Starttijd
+        </th>
+        <th>
+            Geplande_Eindtijd
+        </th>
+        <th>
+            Starttijd
+        </th>
+        <th>
+            Eindtijd
+        </th>
+        <th>
+            Verschil
+        </th>
+        <th>
+            Status
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Employee.FirstName)
@@ -43,15 +53,29 @@
                 @Html.DisplayFor(modelItem => item.Employee.LastName)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.TimeBlock.StartTime.LocalDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeBlock.EndTime.LocalDateTime)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.TimeEntry.StartDateTime.LocalDateTime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TimeEntry.EndDateTime.LocalDateTime)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.DifferenceFormatted)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.TimeEntry.ApproveStatus)
             </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.TimeEntry.Id}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.TimeEntry.Id}) |
+                @Html.ActionLink("Verify", "Verify", new {id = item.TimeEntry.Id}) |
+            </td>
         </tr>
-}
+    }
     </tbody>
 </table>

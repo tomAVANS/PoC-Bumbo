@@ -15,6 +15,9 @@ namespace BumboPoC.Domain
 		public DbSet<Employee> Employees { get; set; }
 		public DbSet<TimeEntry> TimeEntries { get; set; }
 		public DbSet<NfcCard> NfcCards { get; set; }
+		public DbSet<TimeBlock> TimeBlocks { get; set; }
+		
+		public DbSet<WorkedShiftRaw> WorkedShifts { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -23,7 +26,7 @@ namespace BumboPoC.Domain
 			modelBuilder.Entity<Employee>().HasMany(e => e.TimeEntries).WithOne(te => te.Employee).OnDelete(DeleteBehavior.Cascade);
 			modelBuilder.Entity<TimeSchedule>().HasMany(t => t.TimeBlocks).WithOne(t => t.TimeSchedule).OnDelete(DeleteBehavior.Cascade);
 			modelBuilder.Entity<TimeBlock>().HasOne(t => t.Employee).WithMany(e => e.TimeBlocks);
-			
+			modelBuilder.Entity<WorkedShiftRaw>().HasNoKey();
 			
 			modelBuilder.Entity<NfcCard>().HasData(new List<NfcCard>()
 			{
@@ -118,8 +121,8 @@ namespace BumboPoC.Domain
 				new TimeBlock()
 				{
 					Id = 6,
-					StartTime = new DateTimeOffset(2021, 10, 19, 14, 00, 00, new TimeSpan(2, 0, 0)),
-					EndTime = new DateTimeOffset(2021, 10, 19, 21, 00, 00, new TimeSpan(2, 0, 0)),
+					StartTime = new DateTimeOffset(2021, 10, 20, 14, 00, 00, new TimeSpan(2, 0, 0)),
+					EndTime = new DateTimeOffset(2021, 10, 20, 21, 00, 00, new TimeSpan(2, 0, 0)),
 					EmployeeId = 2,
 					TimeScheduleId = 1
 				},
